@@ -3,6 +3,18 @@ import { test, expect } from '@playwright/test'
 test('has title', async ({ page }) => {
   await page.goto('https://www.renfe.com/es/es')
 
-  // Expect a title "to contain" a substring.
+  
   await expect(page).toHaveTitle(/Renfe/)
+  await page.waitForLoadState('domcontentloaded')
+  // await page.waitForSelector('#origin')
+  // await page.locator('#origin').isVisible()
+
+  await page.locator('#origin').pressSequentially('MAD')
+  await page.locator('#awesomplete_list_2_item_0').click()
+
+  await page.locator('#destination').pressSequentially('Barc')
+  await page.locator('#awesomplete_list_1_item_0').click()
+
+  await page.locator('#datepicker').click()
+  await page.locator('[date-time=1707433200000]').click()
 })
