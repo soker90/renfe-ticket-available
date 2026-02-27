@@ -1,0 +1,7 @@
+name = "renfe-telegram-bot"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+[vars]
+GITHUB_REPO = "tu-usuario/renfe-ticket-available"
+GITHUB_WORKFLOW = "check-tickets.yml"

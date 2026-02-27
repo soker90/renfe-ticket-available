@@ -1,21 +1,23 @@
 {
   "name": "renfe-ticket-available",
-  "version": "1.0.0",
-  "description": "Notifica cuando hay disponibles billetes para un trayecto",
-  "main": "index.js",
-  "scripts": {},
-  "keywords": [],
+  "version": "2.0.0",
+  "description": "Consulta disponibilidad de billetes Renfe (Alcázar de San Juan ↔ Madrid) y notifica por Telegram",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "tsx src/index.ts",
+    "check": "tsc --noEmit"
+  },
+  "keywords": ["renfe", "tickets", "train", "telegram", "scraper"],
   "author": "",
   "license": "GPL-3.0",
-  "scripts": {
-    "lint": "standard",
-    "lint:fix": "standard --fix",
-    "test:ui": "playwright test --ui",
-    "test": "playwright test"
+  "dependencies": {
+    "json5": "^2.2.3"
   },
   "devDependencies": {
-    "@playwright/test": "^1.41.2",
     "@types/node": "^20.11.16",
-    "standard": "^17.1.0"
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
   }
 }

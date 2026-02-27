@@ -1,0 +1,59 @@
+name: Check Renfe Tickets
+
+on:
+  workflow_dispatch:
+    inputs:
+      fecha:
+        description: "Fecha del viaje (DD/MM/YYYY)"
+        required: true
+        type: string
+      direccion:
+        description: "Dirección del viaje"
+        required: true
+        type: choice
+        options:
+          - ida
+          - vuelta
+        default: ida
+      tipo_viaje:
+        description: "Tipo de viaje"
+        required: true
+        type: choice
+        options:
+          - solo_ida
+          - ida_vuelta
+        default: solo_ida
+      hora_desde:
+        description: "Hora inicio franja (HH:MM, opcional)"
+        required: false
+        type: string
+      hora_hasta:
+        description: "Hora fin franja (HH:MM, opcional)"
+        required: false
+        type: string
+
+jobs:
+  check-tickets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check train availability
+        env:
+          FECHA: ${{ inputs.fecha }}
+          DIRECCION: ${{ inputs.direccion }}
+          TIPO_VIAJE: ${{ inputs.tipo_viaje }}
+          HORA_DESDE: ${{ inputs.hora_desde }}
+          HORA_HASTA: ${{ inputs.hora_hasta }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: npx tsx src/index.ts
