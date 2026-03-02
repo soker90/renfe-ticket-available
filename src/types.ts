@@ -4,6 +4,9 @@ export interface Station {
   name: string; // ej: "ALCÁZAR DE SAN JUAN"
 }
 
+/** Clave de estación disponible */
+export type StationKey = "ALCAZAR" | "MADRID" | "ARANJUEZ";
+
 /** Dirección del viaje */
 export type Direction = "ida" | "vuelta";
 
@@ -19,7 +22,8 @@ export interface TimeRange {
 /** Configuración de búsqueda */
 export interface SearchConfig {
   fecha: string; // DD/MM/YYYY
-  direccion: Direction;
+  origenKey: StationKey;
+  destinoKey: StationKey;
   tipoViaje: TripType;
   franjaHoraria?: TimeRange;
 }
@@ -46,7 +50,7 @@ export interface SearchResult {
 }
 
 /** Estaciones predefinidas */
-export const STATIONS: Record<string, Station> = {
+export const STATIONS: Record<StationKey, Station> = {
   ALCAZAR: {
     code: "0071,60400,60400",
     name: "ALCÁZAR DE SAN JUAN",
@@ -54,5 +58,9 @@ export const STATIONS: Record<string, Station> = {
   MADRID: {
     code: "0071,18000,18000",
     name: "MADRID - ATOCHA CERCANÍAS",
+  },
+  ARANJUEZ: {
+    code: "0071,10300,10300",
+    name: "ARANJUEZ",
   },
 };

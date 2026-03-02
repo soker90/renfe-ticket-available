@@ -382,9 +382,9 @@ export class RenfeAPI {
    * Método principal: busca trenes disponibles
    */
   async searchTrains(config: SearchConfig): Promise<SearchResult> {
-    // Determinar origen y destino según dirección
-    const origin = config.direccion === "ida" ? STATIONS.ALCAZAR : STATIONS.MADRID;
-    const destination = config.direccion === "ida" ? STATIONS.MADRID : STATIONS.ALCAZAR;
+    // Determinar origen y destino según claves
+    const origin = STATIONS[config.origenKey];
+    const destination = STATIONS[config.destinoKey];
 
     console.log(`\nBuscando trenes: ${origin.name} → ${destination.name} | ${config.fecha}`);
     if (config.franjaHoraria) {

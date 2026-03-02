@@ -7,22 +7,24 @@ on:
         description: "Fecha del viaje (DD/MM/YYYY)"
         required: true
         type: string
-      direccion:
-        description: "Dirección del viaje"
+      origen:
+        description: "Estación de origen"
         required: true
         type: choice
         options:
-          - ida
-          - vuelta
-        default: ida
-      tipo_viaje:
-        description: "Tipo de viaje"
+          - ALCAZAR
+          - MADRID
+          - ARANJUEZ
+        default: ALCAZAR
+      destino:
+        description: "Estación de destino"
         required: true
         type: choice
         options:
-          - solo_ida
-          - ida_vuelta
-        default: solo_ida
+          - ALCAZAR
+          - MADRID
+          - ARANJUEZ
+        default: MADRID
       hora_desde:
         description: "Hora inicio franja (HH:MM, opcional)"
         required: false
@@ -50,8 +52,8 @@ jobs:
       - name: Check train availability
         env:
           FECHA: ${{ inputs.fecha }}
-          DIRECCION: ${{ inputs.direccion }}
-          TIPO_VIAJE: ${{ inputs.tipo_viaje }}
+          ORIGEN: ${{ inputs.origen }}
+          DESTINO: ${{ inputs.destino }}
           HORA_DESDE: ${{ inputs.hora_desde }}
           HORA_HASTA: ${{ inputs.hora_hasta }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
