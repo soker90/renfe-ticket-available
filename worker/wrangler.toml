@@ -11,4 +11,4 @@ GITHUB_WORKFLOW = "check-tickets.yml"
 # Sustituir el id por el devuelto por el comando anterior
 [[kv_namespaces]]
 binding = "BOT_SESSIONS"
-id = "PLACEHOLDER_REEMPLAZAR"
+id = "2bb79279f3404254b0f9d2df29d0d69e"
