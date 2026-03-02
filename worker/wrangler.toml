@@ -5,3 +5,10 @@ compatibility_date = "2024-01-01"
 [vars]
 GITHUB_REPO = "soker90/renfe-ticket-available"
 GITHUB_WORKFLOW = "check-tickets.yml"
+
+# Namespace KV para guardar el estado de las sesiones conversacionales (TTL 10 min)
+# Crear con: npx wrangler kv namespace create BOT_SESSIONS
+# Sustituir el id por el devuelto por el comando anterior
+[[kv_namespaces]]
+binding = "BOT_SESSIONS"
+id = "PLACEHOLDER_REEMPLAZAR"
