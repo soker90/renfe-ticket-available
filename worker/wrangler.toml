@@ -6,7 +6,12 @@ compatibility_date = "2025-01-01"
 GITHUB_REPO = "soker90/renfe-ticket-available"
 GITHUB_WORKFLOW = "check-tickets.yml"
 
+# Cron Trigger: comprobar monitorizaciones cada 10 minutos
+[triggers]
+crons = ["*/10 * * * *"]
+
 # Namespace KV para guardar el estado de las sesiones conversacionales (TTL 10 min)
+# y las monitorizaciones activas (sin TTL, se borran manualmente o por expiración de fecha)
 # Crear con: npx wrangler kv namespace create BOT_SESSIONS
 # Sustituir el id por el devuelto por el comando anterior
 [[kv_namespaces]]
